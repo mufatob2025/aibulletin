@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About AI Bulletin — Trusted AI News & Intelligence | aibulletin.news</title>
+  <meta name="description" content="AI Bulletin is a trusted source for breaking artificial intelligence news, research analysis, product launches, funding rounds and policy updates. Updated every hour.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.aibulletin.news/about.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Source+Sans+3:wght@300;400;500;600&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#0f0f0f;--ink2:#2c2c2c;--ink3:#555;--paper:#faf9f7;--paper2:#f3f1ed;--rule:#d8d4cc;--red:#c0172a;--red2:#8f1020;--navy:#0c1928;--serif:'Playfair Display',Georgia,serif;--sans:'Source Sans 3',sans-serif;--mono:'Courier Prime',monospace}
+    html{background:var(--paper);color:var(--ink);font-family:var(--sans)}
+    body{min-height:100vh}
+    .site-header{background:var(--navy);padding:1rem 2rem;border-bottom:3px solid var(--red);display:flex;align-items:center;justify-content:space-between}
+    .brand{font-family:var(--serif);font-size:1.8rem;font-weight:900;color:#fff;text-decoration:none}
+    .brand span{color:var(--red)}
+    .back{font-family:var(--mono);font-size:.72rem;color:rgba(255,255,255,.6);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:1px}
+    .back:hover{color:#fff;border-color:#fff}
+
+    /* HERO */
+    .hero{background:var(--navy);padding:4rem 2rem 3rem;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}
+    .hero-eyebrow{font-family:var(--mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:var(--red);margin-bottom:1rem}
+    .hero h1{font-family:var(--serif);font-size:3rem;font-weight:900;color:#fff;line-height:1.15;letter-spacing:-.03em;max-width:700px;margin:0 auto 1.2rem}
+    .hero h1 em{color:var(--red);font-style:italic}
+    .hero p{font-size:1.05rem;color:rgba(255,255,255,.65);max-width:580px;margin:0 auto;line-height:1.8}
+
+    /* STATS */
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--red);padding:0}
+    .stat{padding:1.5rem;text-align:center;border-right:1px solid rgba(255,255,255,.2)}
+    .stat:last-child{border-right:none}
+    .stat-n{font-family:var(--serif);font-size:2.2rem;font-weight:900;color:#fff;line-height:1}
+    .stat-l{font-family:var(--mono);font-size:.65rem;color:rgba(255,255,255,.75);text-transform:uppercase;letter-spacing:.1em;margin-top:.3rem}
+
+    /* CONTENT */
+    .content{max-width:900px;margin:0 auto;padding:3rem 2rem}
+    h2{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--navy);margin-bottom:1rem;line-height:1.25}
+    h3{font-family:var(--sans);font-size:1rem;font-weight:600;color:var(--ink);margin:1.5rem 0 .5rem}
+    p{font-size:.95rem;line-height:1.85;color:var(--ink3);margin-bottom:1rem}
+    .intro{font-size:1.1rem;line-height:1.9;color:var(--ink2);font-weight:300;margin-bottom:2rem}
+
+    /* PILLARS */
+    .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin:2rem 0}
+    .pillar{background:var(--paper2);border:1px solid var(--rule);border-top:3px solid var(--navy);padding:1.3rem 1.4rem;border-radius:0 0 6px 6px}
+    .pillar-icon{font-size:1.5rem;margin-bottom:.6rem}
+    .pillar h3{margin-top:0;font-size:.88rem;text-transform:uppercase;letter-spacing:.06em;font-family:var(--mono);color:var(--navy)}
+    .pillar p{font-size:.83rem;margin-bottom:0}
+
+    /* COVERAGE */
+    .coverage-grid{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:1rem 0 2rem}
+    .cv{background:var(--paper2);border:1px solid var(--rule);border-radius:5px;padding:.7rem 1rem;display:flex;gap:.7rem;align-items:flex-start;font-size:.85rem}
+    .cv-icon{font-size:1rem;flex-shrink:0}
+    .cv-text strong{display:block;color:var(--ink);font-size:.85rem;margin-bottom:.1rem}
+    .cv-text span{color:var(--ink3);font-size:.78rem;line-height:1.5}
+
+    /* SOURCES */
+    .sources{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 2rem}
+    .src-badge{background:var(--navy);color:rgba(255,255,255,.8);font-family:var(--mono);font-size:.68rem;padding:.3rem .8rem;border-radius:3px;letter-spacing:.04em}
+
+    /* ADVERTISE */
+    .advertise-box{background:var(--navy);color:#fff;padding:2.5rem;border-radius:8px;margin:3rem 0;text-align:center}
+    .advertise-box h2{color:#fff;font-size:1.6rem;margin-bottom:.7rem}
+    .advertise-box p{color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:1.5rem;max-width:480px;margin-left:auto;margin-right:auto}
+    .btn-contact{display:inline-block;background:var(--red);color:#fff;font-family:var(--mono);font-size:.78rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.8rem 2rem;text-decoration:none;border-radius:4px;transition:background .15s}
+    .btn-contact:hover{background:var(--red2)}
+
+    /* CONTACT */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0 2rem}
+    .contact-item{background:var(--paper2);border:1px solid var(--rule);padding:1rem 1.2rem;border-radius:6px}
+    .contact-item strong{font-family:var(--mono);font-size:.68rem;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);display:block;margin-bottom:.3rem}
+    .contact-item a{color:var(--red);font-size:.88rem}
+
+    /* FOOTER */
+    footer{background:var(--navy);color:rgba(255,255,255,.5);padding:2rem;text-align:center;font-family:var(--mono);font-size:.68rem;margin-top:3rem}
+    footer a{color:rgba(255,255,255,.6)}
+    footer a:hover{color:#fff}
+
+    @media(max-width:700px){
+      .stats{grid-template-columns:1fr 1fr}
+      .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.2)}
+      .pillars{grid-template-columns:1fr}
+      .coverage-grid{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .hero h1{font-size:2rem}
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-header">
+  <a class="brand" href="/">AI <span>Bulletin</span></a>
+  <a class="back" href="/">← Back to News</a>
+</div>
+
+<section class="hero">
+  <div class="hero-eyebrow">About AI Bulletin</div>
+  <h1>The World's AI News,<br><em>Delivered Every Hour</em></h1>
+  <p>AI Bulletin is an independent news publication covering the most important developments in artificial intelligence — from groundbreaking research to major product launches, funding rounds and global policy.</p>
+</section>
+
+<div class="stats">
+  <div class="stat"><div class="stat-n">24/7</div><div class="stat-l">Coverage</div></div>
+  <div class="stat"><div class="stat-n">Hourly</div><div class="stat-l">Updates</div></div>
+  <div class="stat"><div class="stat-n">7+</div><div class="stat-l">News Sources</div></div>
+  <div class="stat"><div class="stat-n">100%</div><div class="stat-l">Independent</div></div>
+</div>
+
+<div class="content">
+
+  <p class="intro">We launched AI Bulletin because the AI space moves too fast for traditional news cycles. Breakthroughs happen overnight, funding rounds close before lunch, and regulation changes by Friday. Our publication tracks it all — continuously, clearly, and without bias.</p>
+
+  <h2>Our Editorial Standards</h2>
+  <div class="pillars">
+    <div class="pillar">
+      <div class="pillar-icon">🎯</div>
+      <h3>Accuracy First</h3>
+      <p>Every story is sourced from established, authoritative publications. We link directly to original sources so you can verify everything we report.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">⚡</div>
+      <h3>Speed Without Compromise</h3>
+      <p>Our systems monitor the world's leading AI news feeds continuously, so breaking stories reach you within the hour they are published.</p>
+    </div>
+    <div class="pillar">
+      <div class="pillar-icon">🔍</div>
+      <h3>Context & Analysis</h3>
+      <p>We go beyond headlines. Every story includes a plain-English summary and a clear explanation of why it matters to the AI industry.</p>
+    </div>
+  </div>
+
+  <h2>What We Cover</h2>
+  <div class="coverage-grid">
+    <div class="cv"><div class="cv-icon">🔴</div><div class="cv-text"><strong>Breaking News</strong><span>Major announcements, model releases and industry-shifting events as they happen</span></div></div>
+    <div class="cv"><div class="cv-icon">🔬</div><div class="cv-text"><strong>Research & Science</strong><span>Papers, studies and discoveries from leading AI labs and academic institutions</span></div></div>
+    <div class="cv"><div class="cv-icon">🚀</div><div class="cv-text"><strong>Products & Launches</strong><span>New AI tools, applications and platform updates across the industry</span></div></div>
+    <div class="cv"><div class="cv-icon">💰</div><div class="cv-text"><strong>Funding & Business</strong><span>Investment rounds, acquisitions, valuations and enterprise AI adoption</span></div></div>
+    <div class="cv"><div class="cv-icon">🏛️</div><div class="cv-text"><strong>Policy & Regulation</strong><span>Government AI policy, regulation, safety frameworks and international standards</span></div></div>
+    <div class="cv"><div class="cv-icon">💬</div><div class="cv-text"><strong>Opinion & Analysis</strong><span>Informed perspectives from leading voices on where AI is headed</span></div></div>
+  </div>
+
+  <h2>Our Sources</h2>
+  <p>We aggregate and verify news from the world's most respected technology publications. Our editorial process summarises and contextualises stories, always linking back to the original source.</p>
+  <div class="sources">
+    <span class="src-badge">TechCrunch</span>
+    <span class="src-badge">VentureBeat</span>
+    <span class="src-badge">Wired</span>
+    <span class="src-badge">The Verge</span>
+    <span class="src-badge">MIT Technology Review</span>
+    <span class="src-badge">AI News</span>
+    <span class="src-badge">The Hacker News</span>
+    <span class="src-badge">+ more</span>
+  </div>
+
+  <div class="advertise-box">
+    <h2>Reach the AI Community</h2>
+    <p>AI Bulletin reaches founders, researchers, engineers and investors who are building and buying AI products. Advertise with us and put your brand in front of the most engaged AI audience on the web.</p>
+    <a class="btn-contact" href="mailto:advertise@aibulletin.news">Get in Touch →</a>
+  </div>
+
+  <h2>Contact Us</h2>
+  <p>We welcome tips, corrections, press releases and partnership enquiries.</p>
+  <div class="contact-grid">
+    <div class="contact-item"><strong>General Enquiries</strong><a href="mailto:hello@aibulletin.news">hello@aibulletin.news</a></div>
+    <div class="contact-item"><strong>Advertising</strong><a href="mailto:advertise@aibulletin.news">advertise@aibulletin.news</a></div>
+    <div class="contact-item"><strong>Press & Tips</strong><a href="mailto:tips@aibulletin.news">tips@aibulletin.news</a></div>
+    <div class="contact-item"><strong>Privacy</strong><a href="mailto:privacy@aibulletin.news">privacy@aibulletin.news</a></div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 AI Bulletin · aibulletin.news · All rights reserved<br>
+  <a href="/">Home</a> &nbsp;·&nbsp;
+  <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp;
+  <a href="/sitemap.xml">Sitemap</a>
+</footer>
+
+</body>
+</html>
