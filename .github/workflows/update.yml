@@ -2,8 +2,8 @@ name: Update AI Bulletin
 
 on:
   schedule:
-    - cron: '0 * * * *'   # every hour
-  workflow_dispatch:        # manual trigger from GitHub UI or admin panel
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -33,11 +33,10 @@ jobs:
 
       - name: Commit updated files
         run: |
-          git config user.name  "AIBulletin Bot"
+          git config user.name "AIBulletin Bot"
           git config user.email "bot@aibulletin.news"
           git add index.html sitemap.xml robots.txt articles.json seen_ids.json
-          git diff --cached --quiet || \
-            git commit -m "chore: update news [$(date -u +'%Y-%m-%d %H:%M UTC')]"
+          git diff --cached --quiet || git commit -m "chore: update news [$(date -u +'%Y-%m-%d %H:%M UTC')]"
           git push
 
       - name: Trigger Netlify deploy
@@ -46,5 +45,4 @@ jobs:
         run: |
           if [ -n "$NETLIFY_BUILD_HOOK" ]; then
             curl -s -X POST "$NETLIFY_BUILD_HOOK"
-            echo "Netlify deploy triggered."
           fi
