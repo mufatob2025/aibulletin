@@ -31,7 +31,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: python fetch_news.py
 
-      - - name: Commit updated files
+      - name: Commit updated files
         run: |
           git config user.name "AIBulletin Bot"
           git config user.email "bot@aibulletin.news"
