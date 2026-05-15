@@ -7,7 +7,7 @@ Runs every hour via GitHub Actions → auto-deploys to Netlify.
 import os, json, time, hashlib, feedparser, re
 from datetime import datetime, timezone
 from pathlib import Path
-import google.generativeai as genai
+import anthropic
 
 # ─── SITE CONFIG ───────────────────────────────────────────────────────────────
 SITE_NAME        = "AI Bulletin"
@@ -164,41 +164,42 @@ def is_ai(title: str, summary: str) -> bool:
 
 # ─── AI PROCESSING ─────────────────────────────────────────────────────────────
 
-# ─── AI PROCESSING (Google Gemini — Free Tier) ────────────────────────────────
+SYS = ("You are a senior editor at a technology news publication. "
+       "Process raw article data and return clean, SEO-optimised JSON. "
+       "Return ONLY valid JSON — no markdown, no preamble, no explanation.")
 
-def process(model, article: dict) -> dict:
-    prompt = f"""You are a senior editor at a technology news publication.
-Process this AI news article and return ONLY a valid JSON object.
-No markdown fences, no explanation, no preamble — pure JSON only.
+def process(client, article: dict) -> dict:
+    prompt = f"""Process this AI news article. Return ONLY this JSON structure:
 
 Title: {article['title']}
 Source: {article['source']}
 Content: {article['summary']}
 
-Return exactly this JSON structure:
 {{
   "headline": "Punchy rewritten headline under 12 words. Keyword-first. No clickbait.",
-  "seo_title": "SEO title under 60 chars. Format: Keyword: Detail",
-  "meta_description": "155-char meta description. Include primary keyword. Action-oriented.",
+  "seo_title": "SEO title under 60 chars. Format: 'Keyword: Detail — Source'",
+  "meta_description": "155-char meta description. Include primary keyword naturally. Action-oriented.",
   "summary": "2-3 sentence plain English summary. Include keywords naturally.",
   "takeaway": "One sentence: the most important implication for the AI industry.",
   "focus_keyword": "Primary 2-4 word keyword phrase",
   "secondary_keywords": ["kw2", "kw3", "kw4"],
   "tag": "One of: Breaking | Hot | Research | Product | Opinion | Funding | Policy",
-  "importance": 7,
-  "read_time": 2,
-  "is_ai_related": true
+  "importance": <1-10 integer. 10=historic, 7=very significant, 4=routine>,
+  "read_time": <1-3 integer minutes>,
+  "is_ai_related": <true or false>
 }}"""
 
-    response = model.generate_content(prompt)
-    text = response.text.strip()
-
-    # Strip markdown fences if Gemini adds them
+    r = client.messages.create(
+        model="claude-sonnet-4-20250514",
+        max_tokens=500,
+        system=SYS,
+        messages=[{"role": "user", "content": prompt}],
+    )
+    text = r.content[0].text.strip()
     if text.startswith("```"):
         text = text.split("```")[1]
         if text.startswith("json"):
             text = text[4:]
-
     return json.loads(text.strip())
 
 # ─── HTML RENDERING ────────────────────────────────────────────────────────────
@@ -737,15 +738,12 @@ document.querySelectorAll('.acard a,.hhl a').forEach(l=>{{
 # ─── MAIN ──────────────────────────────────────────────────────────────────────
 
 def main():
-    api_key = os.environ.get("GEMINI_API_KEY")
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
     if not api_key:
-        raise SystemExit("❌  Set GEMINI_API_KEY environment variable.")
+        raise SystemExit("❌  Set ANTHROPIC_API_KEY environment variable.")
 
-    # Configure Gemini — gemini-1.5-flash is FREE (no credit card needed)
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel("gemini-1.5-flash")
-
-    seen = load_seen()
+    client  = anthropic.Anthropic(api_key=api_key)
+    seen    = load_seen()
 
     print("📡  Fetching RSS feeds...")
     raw = fetch_raw(seen)
@@ -763,18 +761,18 @@ def main():
 
         print(f"    [{i+1}/{len(raw)}] {art['title'][:60]}")
         try:
-            result = process(model, art)
+            result = process(client, art)
             if not result.get("is_ai_related", True):
                 continue
             result["link"]   = art["link"]
             result["source"] = art["source"]
             processed.append(result)
             new_ids.add(art["id"])
-            time.sleep(1)   # stay within free tier rate limit (15 req/min)
+            time.sleep(0.3)
         except Exception as ex:
             print(f"    ⚠  Error: {ex}")
 
-    processed.sort(key=lambda x: x.get("importance", 0), reverse=True)
+    processed.sort(key=lambda x: x.get("importance",0), reverse=True)
 
     archive = Path(ARCHIVE_FILE)
     old = json.loads(archive.read_text()) if archive.exists() else []
